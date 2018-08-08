@@ -1,0 +1,9 @@
+let game = new Phaser.Game(800, 600, Phaser.AUTO);
+
+game.state.add('boot', bootState);
+game.state.add('load', loadState);
+game.state.add('menu', menuState);
+game.state.add('main', mainState);
+game.state.add('editor', editorState);
+
+game.state.start('boot');
