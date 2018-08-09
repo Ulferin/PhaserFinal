@@ -55,6 +55,8 @@ let menuState = {
       options, { font: '15px Press Start 2P', fill: '#ffffff' });
     optionsLabel.anchor.set(0.5);
     optionsLabel.inputEnabled = true;
+    optionsLabel.events.onInputOver.add(this.selectedText, this, 0, startLabel);
+    optionsLabel.events.onInputOut.add(this.inputOutText, this, 0, startLabel);
     //TODO implementare opzioni
 
     //probabilmente inutile
