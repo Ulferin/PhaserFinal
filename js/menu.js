@@ -2,6 +2,7 @@
 
 let name = 'Star Destroyer';
 let start = 'Start game';
+let fSize = 15;
 let options = 'Options';
 let exit = 'Exit Game';
 
@@ -44,16 +45,18 @@ let menuState = {
 
     //Aggiunge scelte al menu
     var startLabel = game.add.text(game.width/2, game.height-150,
-      start, { font: '15px Press Start 2P', fill: '#ffffff' });
+      start, { font: 'Press Start 2P', fill: '#ffffff' });
     startLabel.anchor.set(0.5);
+    startLabel.fontSize = fSize;
     startLabel.inputEnabled = true;
     startLabel.events.onInputOver.add(this.selectedText, this, 0, startLabel);
     startLabel.events.onInputOut.add(this.inputOutText, this, 0, startLabel);
     startLabel.events.onInputDown.add(this.startGame);
 
     var optionsLabel = game.add.text(game.width/2, game.height-100,
-      options, { font: '15px Press Start 2P', fill: '#ffffff' });
+      options, { font: 'Press Start 2P', fill: '#ffffff' });
     optionsLabel.anchor.set(0.5);
+    optionsLabel.fontSize = fSize;
     optionsLabel.inputEnabled = true;
     optionsLabel.events.onInputOver.add(this.selectedText, this, 0, startLabel);
     optionsLabel.events.onInputOut.add(this.inputOutText, this, 0, startLabel);
@@ -88,10 +91,12 @@ let menuState = {
   },
 
   selectedText: function(text) {
+    game.add.tween(text).to({fontSize: fSize + 3}, 50).start();
     text.tint = 0xf4f142;
   },
 
   inputOutText: function(text) {
+    game.add.tween(text).to({fontSize: fSize}, 50).start()
     text.tint = 0xffffff;
   },
 
