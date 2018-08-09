@@ -12,7 +12,7 @@ let bootState = {
 
   create: function () {
     //Imposta motore fisico, colore di background e barra di caricamento
-    game.stage.backgroundColor = '#39537c';
+    game.stage.backgroundColor = '#000000';
     game.physics.startSystem(Phaser.Physics.ARCADE);
     game.renderer.renderSession.roundPixels = true;
 
