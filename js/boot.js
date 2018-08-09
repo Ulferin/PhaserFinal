@@ -3,15 +3,16 @@
 * caricamento preliminare di oggetti necessari al menu e per il setup
 * delle impostazioni principali valide per tutto il gioco
 * */
-var bootState = {
+let bootState = {
 
   preload: function () {
-    //TODO aggiungere barra di caricamento
+    //carica assets per barra di caricamento
+    game.load.image('progressBar', 'assets/progressBar.png');
   },
 
   create: function () {
     //Imposta motore fisico, colore di background e barra di caricamento
-    game.stage.backgroundColor = '#3399ff';
+    game.stage.backgroundColor = '#39537c';
     game.physics.startSystem(Phaser.Physics.ARCADE);
     game.renderer.renderSession.roundPixels = true;
 
