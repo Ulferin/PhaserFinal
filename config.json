@@ -1,0 +1,11 @@
+{
+  "text": {
+    "name": "Star Destroyer",
+    "start": "Start game",
+    "options": "Options",
+    "size": 15
+  },
+  "game": {
+
+  }
+}

@@ -8,6 +8,8 @@ let bootState = {
   preload: function () {
     //carica assets per barra di caricamento
     game.load.image('progressBar', 'assets/progressBar.png');
+
+    game.load.json('config',null);
   },
 
   create: function () {
@@ -19,6 +21,8 @@ let bootState = {
     game.stage.disableVisibilityChange = true;
 
     //TODO aggiungere mobile friendlyness
+
+    config = game.cache.getJSON('config');
 
     //Avvia stato di caricamento
     game.state.start('load');

@@ -1,11 +1,5 @@
 //TODO aggiungere tasto per mutare suono
 
-let name = 'Star Destroyer';
-let start = 'Start game';
-let fSize = 15;
-let options = 'Options';
-let exit = 'Exit Game';
-
 let distance = 300;
 let speed = 2;
 let star;
@@ -23,6 +17,10 @@ let zz = [];
 let menuState = {
 
   create: function () {
+    //Se esiste una versione aggiornata del file di configurazione, lo recupera
+    configs = JSON.parse(localStorage.getItem('options'));
+    if(configs) config = configs;
+
     //Crea sprite per stelle e texture
     star = game.add.sprite(0, 0, 'star');
     star.alpha = 0.5;
@@ -36,7 +34,7 @@ let menuState = {
     }
 
     //Mostra nome del gioco
-    var nameLabel = game.add.text(game.width/2, -50, name,
+    var nameLabel = game.add.text(game.width/2, -50, config.text.name,
       { font: '30px Press Start 2P', fill: '#ffffff' });
     nameLabel.anchor.setTo(0.5, 0.5);
     //aggiunge animazione al label
@@ -45,21 +43,22 @@ let menuState = {
 
     //Aggiunge scelte al menu
     var startLabel = game.add.text(game.width/2, game.height-150,
-      start, { font: 'Press Start 2P', fill: '#ffffff' });
+      config.text.start, { font: 'Press Start 2P', fill: '#ffffff' });
     startLabel.anchor.set(0.5);
-    startLabel.fontSize = fSize;
+    startLabel.fontSize = config.text.size;
     startLabel.inputEnabled = true;
     startLabel.events.onInputOver.add(this.selectedText, this, 0, startLabel);
     startLabel.events.onInputOut.add(this.inputOutText, this, 0, startLabel);
     startLabel.events.onInputDown.add(this.startGame);
 
     var optionsLabel = game.add.text(game.width/2, game.height-100,
-      options, { font: 'Press Start 2P', fill: '#ffffff' });
+      config.text.options, { font: 'Press Start 2P', fill: '#ffffff' });
     optionsLabel.anchor.set(0.5);
-    optionsLabel.fontSize = fSize;
+    optionsLabel.fontSize = config.text.size;
     optionsLabel.inputEnabled = true;
     optionsLabel.events.onInputOver.add(this.selectedText, this, 0, startLabel);
     optionsLabel.events.onInputOut.add(this.inputOutText, this, 0, startLabel);
+    optionsLabel.events.onInputDown.add(this.openOptions);
     //TODO implementare opzioni
 
     //probabilmente inutile
@@ -91,13 +90,19 @@ let menuState = {
   },
 
   selectedText: function(text) {
-    game.add.tween(text).to({fontSize: fSize + 3}, 50).start();
+    game.add.tween(text).to({fontSize: config.text.size + 3}, 50).start();
     text.tint = 0xf4f142;
   },
 
   inputOutText: function(text) {
-    game.add.tween(text).to({fontSize: fSize}, 50).start()
+    game.add.tween(text).to({fontSize: config.text.size}, 50).start();
     text.tint = 0xffffff;
+  },
+
+  openOptions: function() {
+    config.text.size = 15;
+    console.log(config.text.size);
+    localStorage.setItem('options', JSON.stringify(config));
   },
 
   startGame: function () {
