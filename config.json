@@ -1,11 +1,1 @@
-{
-  "text": {
-    "name": "Star Destroyer",
-    "start": "Start game",
-    "options": "Options",
-    "size": 15
-  },
-  "game": {
-
-  }
-}
+{"mainMenu":{"name":"Star Destroyer!!!","start":"Start game","options":"Options","size":15},"options":{"difficulty":[1,2,3],"lives":[3,5,7],"bonus":["yes","no"],"time":[0,60,180]},"preferences":{"difficulty":0,"lives":0,"bonus":1,"time":1}}

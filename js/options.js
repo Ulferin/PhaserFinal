@@ -1,7 +1,0 @@
-let optionsState = {
-
-  create: function () {
-
-  },
-
-};

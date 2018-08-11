@@ -1,0 +1,25 @@
+{
+  "name": "phaserfinal",
+  "version": "1.0.0",
+  "description": "Progetto per esame finale di Programmazione di Interfacce.",
+  "main": "phaser.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/clashofclans.thelions/PhaserFinal.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/clashofclans.thelions/PhaserFinal/issues"
+  },
+  "homepage": "https://gitlab.com/clashofclans.thelions/PhaserFinal#README",
+  "dependencies": {
+    "express": "^4.16.3",
+    "express-device": "^0.4.2",
+    "socket.io": "^2.1.1"
+  }
+}
