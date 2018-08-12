@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fb3b9d5f-7d09-4db5-b0f3-dc595f48e9c9" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/menu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/mobile.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/mobile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -51,7 +46,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mobileInput.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="mobileInput.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/mobileInput.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="289">
@@ -108,7 +103,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="config.json" pinned="false" current-in-tab="false">
+      <file leaf-file-name="config.json" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/config.json">
           <provider selected="true" editor-type-id="text-editor">
             <state>
@@ -273,12 +268,12 @@
       <workItem from="1533906269420" duration="1212000" />
       <workItem from="1533909610156" duration="6981000" />
       <workItem from="1533976646809" duration="19194000" />
-      <workItem from="1534058771189" duration="1370000" />
+      <workItem from="1534058771189" duration="2147000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="49730000" />
+    <option name="totallyTimeSpent" value="50507000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -364,13 +359,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="229" selection-start-column="229" selection-end-column="229" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/options.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -428,6 +416,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
           <caret line="17" column="41" selection-start-line="17" selection-start-column="41" selection-end-line="17" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="229" selection-start-column="229" selection-end-column="229" />
         </state>
       </provider>
     </entry>
