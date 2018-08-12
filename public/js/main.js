@@ -18,9 +18,9 @@ var mainState = {
     yLabel.anchor.set(0.5);
     yLabel.fontSize = config.mainMenu.size;
 
-    socket.on('inclinationChange', function (arg) {
-      xLabel.text = 'valore x:' + arg.x;
-      yLabel.text = 'valore y:' + arg.y;
+    socket.on('prova', function (data) {
+      xLabel.text = 'valore x: ' + data.X;
+      yLabel.text = 'valore y: ' + data.Y;
     })
   },
 

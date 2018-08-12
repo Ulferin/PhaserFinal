@@ -21,15 +21,20 @@ server.listen(8080, function () {
   console.log(`Listening on ${server.address().port}`);
 });
 
-server.lastPlayerID = 0;
+var lastPlayerID = 0;
 
 io.on('connection', function (socket) {
   socket.on('reqConfig', function() {
+    lastPlayerID = socket.id;
     var obj = JSON.parse(fs.readFileSync('./config.json', 'utf8'));
     socket.emit('config', obj);
   });
   
   socket.on('modConfig', function (configFile) {
     fs.writeFile("./config.json", JSON.stringify(configFile), () => console.error);
+  });
+
+  socket.on('input', function(data) {
+    io.to(lastPlayerID).emit('prova', data);
   });
 });

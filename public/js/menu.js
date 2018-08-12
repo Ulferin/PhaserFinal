@@ -31,11 +31,11 @@ let menuState = {
     }*/
 
     //Mostra nome del gioco
-    this.nameLabel = game.add.text(game.width/2, -50, config.mainMenu.name,
+    var nameLabel = game.add.text(game.width/2, -50, config.mainMenu.name,
       { font: '30px Press Start 2P', fill: '#ffffff' });
-    this.nameLabel.anchor.setTo(0.5, 0.5);
+    nameLabel.anchor.setTo(0.5, 0.5);
     //aggiunge animazione al label
-    game.add.tween(this.nameLabel).to({y: 80}, 1000)
+    game.add.tween(nameLabel).to({y: 80}, 1000)
       .easing(Phaser.Easing.Bounce.Out).start();
 
     //Aggiunge scelte al menu
