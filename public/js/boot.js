@@ -17,8 +17,14 @@ let bootState = {
     game.stage.backgroundColor = '#000000';
     game.physics.startSystem(Phaser.Physics.ARCADE);
     game.renderer.renderSession.roundPixels = true;
-
     game.stage.disableVisibilityChange = true;
+    game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+    game.scale.minWidth =  480;
+    game.scale.minHeight = 260;
+    game.scale.maxWidth = 640;
+    game.scale.maxHeight = 480;
+    game.scale.forceOrientation(true);
+    game.scale.pageAlignHorizontally = true;
 
     //TODO aggiungere mobile friendlyness
 

@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fb3b9d5f-7d09-4db5-b0f3-dc595f48e9c9" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/boot.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/boot.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/game.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/game.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/load.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/load.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/menu.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -28,29 +33,11 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
-              <caret line="18" column="43" selection-start-line="18" selection-start-column="43" selection-end-line="18" selection-end-column="43" />
+            <state relative-caret-position="221">
+              <caret line="13" column="4" selection-start-line="13" selection-start-column="4" selection-end-line="13" selection-end-column="4" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="mobile.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/mobile.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="49" selection-start-line="6" selection-start-column="49" selection-end-line="6" selection-end-column="49" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="mobileInput.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/js/mobileInput.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="17" column="41" selection-start-line="17" selection-start-column="41" selection-end-line="17" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -58,8 +45,8 @@
       <file leaf-file-name="menu.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/menu.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="57" column="58" selection-start-line="57" selection-start-column="58" selection-end-line="57" selection-end-column="58" />
+            <state>
+              <caret line="35" column="37" lean-forward="true" selection-start-line="35" selection-start-column="37" selection-end-line="35" selection-end-column="37" />
             </state>
           </provider>
         </entry>
@@ -67,8 +54,8 @@
       <file leaf-file-name="boot.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/boot.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="13" column="23" selection-start-line="13" selection-start-column="23" selection-end-line="13" selection-end-column="23" />
+            <state relative-caret-position="357">
+              <caret line="21" column="4" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="4" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -76,20 +63,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="game.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/js/game.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="3" selection-start-line="10" selection-start-column="3" selection-end-line="10" selection-end-column="3" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="51" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="51" />
+            <state relative-caret-position="357">
+              <caret line="21" column="8" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -103,12 +81,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="config.json" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/config.json">
+      <file leaf-file-name="load.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/js/load.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="229" selection-start-column="229" selection-end-column="229" />
+            <state relative-caret-position="340">
+              <caret line="20" column="87" lean-forward="true" selection-start-line="20" selection-start-column="87" selection-end-line="20" selection-end-column="87" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="game.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/js/game.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="1" column="35" selection-start-line="1" selection-start-column="35" selection-end-line="1" selection-end-column="35" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="arena1.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/assets/arena1.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-164" />
           </provider>
         </entry>
       </file>
@@ -145,17 +142,18 @@
         <option value="$PROJECT_DIR$/js/game.js" />
         <option value="$PROJECT_DIR$/js/boot.js" />
         <option value="$PROJECT_DIR$/js/menu.js" />
-        <option value="$PROJECT_DIR$/public/js/boot.js" />
         <option value="$PROJECT_DIR$/config.json" />
-        <option value="$PROJECT_DIR$/public/index.html" />
         <option value="$PROJECT_DIR$/public/js/options.js" />
         <option value="$PROJECT_DIR$/public/js/style.css" />
         <option value="$PROJECT_DIR$/public/mobile.html" />
-        <option value="$PROJECT_DIR$/public/js/game.js" />
         <option value="$PROJECT_DIR$/server.js" />
+        <option value="$PROJECT_DIR$/public/js/mobileInput.js" />
+        <option value="$PROJECT_DIR$/public/js/load.js" />
         <option value="$PROJECT_DIR$/public/js/menu.js" />
         <option value="$PROJECT_DIR$/public/js/main.js" />
-        <option value="$PROJECT_DIR$/public/js/mobileInput.js" />
+        <option value="$PROJECT_DIR$/public/js/boot.js" />
+        <option value="$PROJECT_DIR$/public/index.html" />
+        <option value="$PROJECT_DIR$/public/js/game.js" />
       </list>
     </option>
   </component>
@@ -202,6 +200,12 @@
               <item name="PhaserFinal" type="b2602c69:ProjectViewProjectNode" />
               <item name="PhaserFinal" type="462c0819:PsiDirectoryNode" />
               <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PhaserFinal" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PhaserFinal" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
               <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -213,7 +217,7 @@
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="C:/xampp/htdocs/pi_final" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -268,12 +272,13 @@
       <workItem from="1533906269420" duration="1212000" />
       <workItem from="1533909610156" duration="6981000" />
       <workItem from="1533976646809" duration="19194000" />
-      <workItem from="1534058771189" duration="2147000" />
+      <workItem from="1534058771189" duration="5928000" />
+      <workItem from="1534236687639" duration="3697000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="50507000" />
+    <option name="totallyTimeSpent" value="57985000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -305,7 +310,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/js/boot.js" />
     <entry file="file://$PROJECT_DIR$/js/load.js" />
     <entry file="file://$PROJECT_DIR$/js/main.js" />
     <entry file="file://$PROJECT_DIR$/js/menu.js" />
@@ -346,19 +350,6 @@
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/load.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/boot.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="13" column="23" selection-start-line="13" selection-start-column="23" selection-end-line="13" selection-end-column="23" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/options.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -367,48 +358,10 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/style.css" />
-    <entry file="file://$PROJECT_DIR$/public/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="51" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/game.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="3" selection-start-line="10" selection-start-column="3" selection-end-line="10" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="37" column="22" selection-start-line="37" selection-start-column="22" selection-end-line="37" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/menu.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="57" column="58" selection-start-line="57" selection-start-column="58" selection-end-line="57" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/mobile.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="6" column="49" selection-start-line="6" selection-start-column="49" selection-end-line="6" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="18" column="43" selection-start-line="18" selection-start-column="43" selection-end-line="18" selection-end-column="43" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -423,6 +376,69 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="229" selection-start-column="229" selection-end-column="229" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="629">
+          <caret line="37" column="22" selection-start-line="37" selection-start-column="22" selection-end-line="37" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/assets/arena1.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-164" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/load.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="87" lean-forward="true" selection-start-line="20" selection-start-column="87" selection-end-line="20" selection-end-column="87" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/boot.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="4" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="4" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/menu.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="35" column="37" lean-forward="true" selection-start-line="35" selection-start-column="37" selection-end-line="35" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="4" selection-start-line="13" selection-start-column="4" selection-end-line="13" selection-end-column="4" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="8" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/game.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="35" selection-start-line="1" selection-start-column="35" selection-end-line="1" selection-end-column="35" />
         </state>
       </provider>
     </entry>

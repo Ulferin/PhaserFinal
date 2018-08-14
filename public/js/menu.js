@@ -56,6 +56,11 @@ let menuState = {
     optionsLabel.events.onInputOver.add(this.selectedText, this, 0, startLabel);
     optionsLabel.events.onInputOut.add(this.inputOutText, this, 0, startLabel);
     optionsLabel.events.onInputDown.add(this.openOptions);
+
+    socket.on('prova', function (data) {
+      nameLabel.x += data.X;
+      nameLabel.y += data.Y;
+    })
   },
 
   update: function() {

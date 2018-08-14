@@ -16,7 +16,9 @@ let loadState = {
     game.load.setPreloadSprite(progressBar);
 
     //TODO caricamento assets gioco
-    game.load.image('star', 'assets/star.png');
+    //game.load.image('star', 'assets/star.png');
+    game.load.image('wall1', 'assets/wall1.png');
+    game.load.tilemap('arena1', 'assets/arena1.json', null, Phaser.Tilemap.TILED_JSON);
   },
 
   create: function () {

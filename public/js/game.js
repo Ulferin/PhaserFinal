@@ -1,5 +1,5 @@
 //Crea oggetto di gioco
-let game = new Phaser.Game(800, 600, Phaser.AUTO);
+let game = new Phaser.Game(800, 608, Phaser.AUTO);
 
 var config = {};
 
