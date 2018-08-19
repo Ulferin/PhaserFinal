@@ -11,8 +11,42 @@
          "width":25,
          "x":0,
          "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "name":"object1",
+         "objects":[
+                {
+                 "gid":2,
+                 "height":96,
+                 "id":1,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":42,
+                 "y":352
+                }, 
+                {
+                 "gid":3,
+                 "height":96,
+                 "id":2,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":726,
+                 "y":352
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
         }],
- "nextobjectid":1,
+ "nextobjectid":4,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.1.5",
@@ -29,6 +63,32 @@
          "spacing":0,
          "tilecount":1,
          "tileheight":32,
+         "tilewidth":32
+        }, 
+        {
+         "columns":1,
+         "firstgid":2,
+         "image":"player.png",
+         "imageheight":96,
+         "imagewidth":32,
+         "margin":0,
+         "name":"player",
+         "spacing":0,
+         "tilecount":1,
+         "tileheight":96,
+         "tilewidth":32
+        }, 
+        {
+         "columns":1,
+         "firstgid":3,
+         "image":"enemy.png",
+         "imageheight":96,
+         "imagewidth":32,
+         "margin":0,
+         "name":"enemy",
+         "spacing":0,
+         "tilecount":1,
+         "tileheight":96,
          "tilewidth":32
         }],
  "tilewidth":32,
