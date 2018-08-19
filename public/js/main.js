@@ -1,3 +1,5 @@
+//TODO migliorare recupero player, palla e enemy da tilemap
+
 /*
 * mainState rappresenta lo stato di gioco vero e proprio
 * */
@@ -63,15 +65,13 @@ var mainState = {
     //Controlla collisioni con mappa
     game.physics.arcade.collide(this.player, this.ball, this.ballHitPlayer, null, this);
     game.physics.arcade.collide(this.objects, this.layer);
-    game.physics.arcade.collide(this.objects, this.objects);
+    game.physics.arcade.collide(this.enemy, this.ball, this.ballHitPlayer, null, this);
 
-    //y axis movement
-    if (this.cursor.up.isDown)
-      this.player.body.velocity.y = -300;
-    else if (this.cursor.down.isDown)
-      this.player.body.velocity.y = 300;
-    else
-      this.player.body.velocity.y = 0;
+    this.movePlayer();
+    this.moveEnemy();
+
+    if(!this.ball.alive)
+      this.newGame();
   },
 
   setSocket: function (player, deviation) {
@@ -86,6 +86,37 @@ var mainState = {
 
     //Decide direzione pallina in base ad inclinazione calcolata
     this.ball.body.velocity.y = (5 * this.deviation.Y);
+  },
+  
+  movePlayer: function () {
+    //y axis movement
+    if (this.cursor.up.isDown)
+      this.player.body.velocity.y = -300;
+    else if (this.cursor.down.isDown)
+      this.player.body.velocity.y = 300;
+    else
+      this.player.body.velocity.y = 0;
+  },
+  
+  moveEnemy: function () {
+
+    //Il giocatore avversario per ora si muove come se seguisse la pallina
+    if(this.ball.body.x > this.game.width/2) {
+      if(this.ball.body.y < this.enemy.body.y + this.enemy.height/2)
+        this.enemy.body.velocity.y = -300;
+      else if (this.ball.body.y === this.enemy.body.y + this.enemy.height/2)
+        this.enemy.body.velocity.y = 0;
+      else
+        this.enemy.body.velocity.y = 300;
+    }
+    else
+      this.enemy.body.velocity.y = 0;
+  },
+
+  newGame: function () {
+    this.ball.reset(this.game.width/2, this.game.height/2);
+    this.ball.body.velocity.x = 350;
+    this.ball.body.velocity.y = 50;
   }
 
 };
