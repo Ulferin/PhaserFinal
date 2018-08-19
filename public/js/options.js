@@ -52,27 +52,32 @@ let optionsState = {
 
   },
 
+  //Funzione per animazione selezione
   selectedText: function (text) {
     game.add.tween(text).to({fontSize: config.mainMenu.size + 3}, 50).start();
     text.tint = 0xf4f142;
   },
 
+  //Funzione per animazione deselezione
   inputOutText: function (text) {
     game.add.tween(text).to({fontSize: config.mainMenu.size}, 50).start();
     text.tint = 0xffffff;
   },
 
+  //Funzione per cambio configurazione
   selected: function (opt) {
     opt.text = opt.optType + ": " + opt.values[(++opt.currentValue)%opt.values.length];
     currConf.preferences[opt.optType] = (opt.currentValue)%opt.values.length;
   },
 
+  //Funzione per salvataggio configurazioni
   saveConfig: function () {
     config = currConf;
     socket.emit('modConfig', config);
     game.state.start('menu');
   },
 
+  //Funzione per scartare configurazioni
   discardConfig: function () {
     game.state.start('menu');
   }

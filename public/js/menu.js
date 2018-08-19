@@ -82,20 +82,24 @@ let menuState = {
     }*/
   },
 
+  //Aggiunge animazione per testo selezionato
   selectedText: function(text) {
     game.add.tween(text).to({fontSize: config.mainMenu.size + 3}, 50).start();
     text.tint = 0xf4f142;
   },
 
+  //Aggiunge animazione per testo deselezionato
   inputOutText: function(text) {
     game.add.tween(text).to({fontSize: config.mainMenu.size}, 50).start();
     text.tint = 0xffffff;
   },
 
+  //Passa allo stato opzioni
   openOptions: function() {
     game.state.start('options');
   },
 
+  //Avvia gioco
   startGame: function () {
     //Avvia stato di gioco
     game.state.start('main');

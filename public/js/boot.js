@@ -19,10 +19,14 @@ let bootState = {
     game.renderer.renderSession.roundPixels = true;
     game.stage.disableVisibilityChange = true;
     game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+
+    //Imposta dimensione minima e massima
     game.scale.minWidth =  480;
     game.scale.minHeight = 260;
     game.scale.maxWidth = 640;
     game.scale.maxHeight = 480;
+
+    //TODO controllare cosa fa
     game.scale.forceOrientation(true);
     game.scale.pageAlignHorizontally = true;
 

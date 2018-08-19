@@ -8,6 +8,7 @@ var mainState = {
   },
 
   create: function () {
+    //Avvia il gioco con mappa "arena1"
     this.map = game.add.tilemap('arena1');
     this.map.addTilesetImage('wall1');
     this.layer = this.map.createLayer('layer1');
