@@ -1,6 +1,7 @@
 //Crea oggetto di gioco
 let game = new Phaser.Game(800, 608, Phaser.AUTO);
 
+//Oggetto ultima configurazione salvata
 var config = {};
 
 //Crea socket e recupera dal server il file di configurazione

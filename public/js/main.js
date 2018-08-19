@@ -47,6 +47,7 @@ var mainState = {
     this.enemy.checkWorldBounds = true;
     this.enemy.body.collideWorldBounds = true;
     this.enemy.body.immovable = true;
+    this.enemy.body.drag = true;
 
     //Recupera palla e imposta proprietà
     this.map.createFromObjects('object1', 4, 'ball', 0, true, false, this.objects);
