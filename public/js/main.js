@@ -18,8 +18,9 @@ var mainState = {
     this.map = game.add.tilemap('arena1');
     this.map.addTilesetImage('wall1');
     this.layer = this.map.createLayer('layer1');
-    this.layer.scale.setTo(game.width/(32 * this.map.width), game.height/(32*this.map.height));
+    //this.layer.scale.setTo(game.width/(32 * this.map.width), game.height/(32*this.map.height));
     this.map.setCollision(1);
+    console.log(this.map);
 
     //Recupera oggetti da tilemap
     this.objects = game.add.group();
@@ -56,7 +57,7 @@ var mainState = {
     this.ball.collideWorldBounds = true;
     game.physics.arcade.enable(this.ball);
     this.ball.body.velocity.x = -350;
-    this.ball.body.velocity.y = 50;
+    this.ball.body.velocity.y = 0;
     this.ball.body.bounce.x = 1;
     this.ball.body.bounce.y = 1;
     this.ball.outOfBoundsKill = true;

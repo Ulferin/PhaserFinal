@@ -30,6 +30,12 @@ let menuState = {
       zz[i] = Math.floor(Math.random() * 1700) - 100;
     }*/
 
+    this.map = game.add.tilemap('arena2');
+    this.map.addTilesetImage('wall2');
+    this.layer = this.map.createLayer('layer1');
+    this.layer.alpha = 0.5;
+    game.add.tween(this.layer).to({alpha:0.30}, 2000).to({alpha:0.5}, 2000).loop().start();
+
     //Mostra nome del gioco
     var nameLabel = game.add.text(game.width/2, -50, config.mainMenu.name,
       { font: '30px Press Start 2P', fill: '#ffffff' });
@@ -98,5 +104,9 @@ let menuState = {
   startGame: function () {
     //Avvia stato di gioco
     game.state.start('main');
+  },
+
+  alpha1: function (layer) {
+    layer.alpha = 1;
   }
 };
