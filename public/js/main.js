@@ -61,6 +61,18 @@ var mainState = {
     this.ball.body.bounce.x = 1;
     this.ball.body.bounce.y = 1;
     this.ball.outOfBoundsKill = true;
+
+    //aggiunge listener per nuovo livello
+    this.key2 = game.input.keyboard.addKey(Phaser.KeyCode.NUMPAD_2);
+    this.key2.onDown.add(this.createMap2, this);
+
+    //aggiunge listener per nuovo livello
+    this.key2 = game.input.keyboard.addKey(Phaser.KeyCode.NUMPAD_1);
+    this.key2.onDown.add(this.createMap1, this);
+
+    //aggiunge listener per nuovo livello
+    this.esc = game.input.keyboard.addKey(Phaser.KeyCode.ESC);
+    this.esc.onDown.add(this.goToMenu, this);
   },
 
   update: function () {
@@ -119,6 +131,30 @@ var mainState = {
     this.ball.reset(this.game.width/2, this.game.height/2);
     this.ball.body.velocity.x = 350;
     this.ball.body.velocity.y = 50;
+  },
+
+  createMap1: function() {
+    this.map.destroy();
+    this.layer.destroy();
+    this.map = game.add.tilemap('arena1');
+    this.map.addTilesetImage('wall1');
+    this.layer = this.map.createLayer('layer1');
+    this.layer.resizeWorld();
+    this.map.setCollision(1);
+  },
+
+  createMap2: function () {
+    this.map.destroy();
+    this.layer.destroy();
+    this.map = game.add.tilemap('arena2');
+    this.map.addTilesetImage('wall2');
+    this.layer = this.map.createLayer('layer1');
+    this.layer.resizeWorld();
+    this.map.setCollision(1);
+  },
+
+  goToMenu: function () {
+    game.state.start('menu');
   }
 
 };
