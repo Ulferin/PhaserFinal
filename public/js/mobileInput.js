@@ -1,5 +1,4 @@
 var socket = io.connect();
-var ball = {};
 
 let padState= {
 

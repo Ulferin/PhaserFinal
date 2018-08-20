@@ -14,13 +14,8 @@ var mainState = {
     this.deviation.Y = 1;
     this.deviation.X = 1;
 
-    //Avvia il gioco con mappa "arena1"
-    this.map = game.add.tilemap('arena1');
-    this.map.addTilesetImage('wall1');
-    this.layer = this.map.createLayer('layer1');
-    //this.layer.scale.setTo(game.width/(32 * this.map.width), game.height/(32*this.map.height));
-    this.map.setCollision(1);
-    console.log(this.map);
+    //Avvia il gioco con la mappa selezionata nelle opzioni
+    this.createMap(config.preferences.map);
 
     //Recupera oggetti da tilemap
     this.objects = game.add.group();
@@ -61,14 +56,6 @@ var mainState = {
     this.ball.body.bounce.x = 1;
     this.ball.body.bounce.y = 1;
     this.ball.outOfBoundsKill = true;
-
-    //aggiunge listener per nuovo livello
-    this.key2 = game.input.keyboard.addKey(Phaser.KeyCode.NUMPAD_2);
-    this.key2.onDown.add(this.createMap2, this);
-
-    //aggiunge listener per nuovo livello
-    this.key2 = game.input.keyboard.addKey(Phaser.KeyCode.NUMPAD_1);
-    this.key2.onDown.add(this.createMap1, this);
 
     //aggiunge listener per nuovo livello
     this.esc = game.input.keyboard.addKey(Phaser.KeyCode.ESC);
@@ -133,21 +120,9 @@ var mainState = {
     this.ball.body.velocity.y = 50;
   },
 
-  createMap1: function() {
-    this.map.destroy();
-    this.layer.destroy();
-    this.map = game.add.tilemap('arena1');
-    this.map.addTilesetImage('wall1');
-    this.layer = this.map.createLayer('layer1');
-    this.layer.resizeWorld();
-    this.map.setCollision(1);
-  },
-
-  createMap2: function () {
-    this.map.destroy();
-    this.layer.destroy();
-    this.map = game.add.tilemap('arena2');
-    this.map.addTilesetImage('wall2');
+  createMap: function(mapNum) {
+    this.map = game.add.tilemap('arena' + mapNum);
+    this.map.addTilesetImage('wall' + mapNum);
     this.layer = this.map.createLayer('layer1');
     this.layer.resizeWorld();
     this.map.setCollision(1);

@@ -30,9 +30,7 @@ let menuState = {
       zz[i] = Math.floor(Math.random() * 1700) - 100;
     }*/
 
-    this.map = game.add.tilemap('arena2');
-    this.map.addTilesetImage('wall2');
-    this.layer = this.map.createLayer('layer1');
+    this.createMap(config.preferences.map);
     this.layer.alpha = 0.5;
     game.add.tween(this.layer).to({alpha:0.30}, 2000).to({alpha:0.5}, 2000).loop().start();
 
@@ -106,7 +104,11 @@ let menuState = {
     game.state.start('main');
   },
 
-  alpha1: function (layer) {
-    layer.alpha = 1;
+  createMap: function (mapNum) {
+    this.map = game.add.tilemap('arena' + mapNum);
+    this.map.addTilesetImage('wall' + mapNum);
+    this.layer = this.map.createLayer('layer1');
+    this.layer.resizeWorld();
+    this.layer.alpha = 0.5;
   }
 };

@@ -17,13 +17,13 @@ let loadState = {
 
     //TODO caricamento assets gioco
     //game.load.image('star', 'assets/star.png');
+    game.load.image('wall0', 'assets/wall0.png');
     game.load.image('wall1', 'assets/wall1.png');
-    game.load.image('wall2', 'assets/wall2.png');
     game.load.image('player', 'assets/player.png');
     game.load.image('enemy', 'assets/enemy.png');
     game.load.image('ball', 'assets/ball.png');
+    game.load.tilemap('arena0', 'assets/arena0.json', null, Phaser.Tilemap.TILED_JSON);
     game.load.tilemap('arena1', 'assets/arena1.json', null, Phaser.Tilemap.TILED_JSON);
-    game.load.tilemap('arena2', 'assets/arena2.json', null, Phaser.Tilemap.TILED_JSON);
 
   },
 
