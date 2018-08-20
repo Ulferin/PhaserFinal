@@ -4,6 +4,14 @@ let currConf = null;
 let optionsState = {
 
   create: function () {
+    this.mapNum = config.preferences.map;
+
+    this.map = game.add.tilemap('arena' + this.mapNum);
+    this.map.addTilesetImage('wall' + this.mapNum);
+    this.layer = this.map.createLayer('layer1');
+    this.layer.resizeWorld();
+    this.layer.alpha = 0.5;
+
     //effettua copia oggetto configurazione
     currConf = JSON.parse(JSON.stringify(config));
 
@@ -25,7 +33,7 @@ let optionsState = {
       //Aggiunge listener a testo
       label.events.onInputOver.add(this.selectedText, this, 0, label);
       label.events.onInputOut.add(this.inputOutText, this, 0, label);
-      label.events.onInputDown.add(this.selected);
+      label.events.onInputDown.add(this.selected, this, 0);
     }
 
     //Label per salvataggio impostazioni
@@ -68,6 +76,17 @@ let optionsState = {
   selected: function (opt) {
     opt.text = opt.optType + ": " + opt.values[(++opt.currentValue)%opt.values.length];
     currConf.preferences[opt.optType] = (opt.currentValue)%opt.values.length;
+
+    if(this.mapNum !== currConf.preferences.map) {
+      this.mapNum = currConf.preferences.map;
+      this.map.destroy();
+      this.layer.destroy();
+      this.map = game.add.tilemap('arena' + this.mapNum);
+      this.map.addTilesetImage('wall' + this.mapNum);
+      this.layer = this.map.createLayer('layer1');
+      this.layer.resizeWorld();
+      this.layer.alpha = 0.5;
+    }
   },
 
   //Funzione per salvataggio configurazioni
