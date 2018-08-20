@@ -43,4 +43,16 @@ io.on('connection', function (socket) {
     //TODO cambiare nome evento emesso
     io.to(lastPlayerID).emit('prova', data);
   });
+
+  socket.on('moveUp', function () {
+    io.to(lastPlayerID).emit('moveUp');
+  });
+
+  socket.on('moveDown', function () {
+    io.to(lastPlayerID).emit('moveDown');
+  });
+
+  socket.on('stop', function () {
+    io.to(lastPlayerID).emit('stop');
+  });
 });

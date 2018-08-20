@@ -81,6 +81,18 @@ var mainState = {
       deviation.Y = data.Y;
 
     });
+
+    socket.on('moveUp', function () {
+      player.body.velocity.y = -300;
+    });
+
+    socket.on('moveDown', function () {
+      player.body.velocity.y = 300;
+    });
+
+    socket.on('stop', function () {
+      player.body.velocity.y = 0;
+    });
   },
   
   ballHitPlayer: function () {
@@ -95,8 +107,8 @@ var mainState = {
       this.player.body.velocity.y = -300;
     else if (this.cursor.down.isDown)
       this.player.body.velocity.y = 300;
-    else
-      this.player.body.velocity.y = 0;
+    else{}
+      //this.player.body.velocity.y = 0;
   },
   
   moveEnemy: function () {

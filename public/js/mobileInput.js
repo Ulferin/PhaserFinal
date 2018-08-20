@@ -8,6 +8,7 @@ let padState= {
   },
 
   create: function () {
+
     //Aggiunge listener per invio cambio rotazione
     this.setOrientationListener();
 
@@ -16,6 +17,7 @@ let padState= {
     this.addMobileButton();
     //Imposta la copertura dell'intera parte di schermo
     game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+    game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
     // Set the min and max width/height of the game
     game.scale.setMinMax(game.width/2, game.height/2,
       game.width*2, game.height*2);
@@ -28,6 +30,12 @@ let padState= {
     //Variabili per tracciamento input
     this.moveUp = false;
     this.moveDown = false;
+
+    //aggiunge listener per nuovo livello
+    //this.esc = game.input.keyboard.addKey(Phaser.KeyCode.ESC);
+    //this.esc.onDown.add(this.goFullScreen, this);
+
+    game.input.onTap.add(this.goFullScreen, this);
   },
 
   update: function () {
@@ -35,14 +43,14 @@ let padState= {
   },
 
   addMobileButton: function() {
-    this.upArrow = game.add.sprite(50, 50, 'upArrow');
+    this.upArrow = game.add.sprite(50, game.height/2, 'upArrow');
     this.upArrow.anchor.set(0.5);
     this.upArrow.inputEnabled = true;
     this.upArrow.alpha = 0.8;
     this.upArrow.events.onInputDown.add(this.setUpTrue, this);
     this.upArrow.events.onInputUp.add(this.setUpFalse, this);
 
-    this.downArrow = game.add.sprite(game.width - 75, 50, 'downArrow');
+    this.downArrow = game.add.sprite(game.width - 75, game.height/2, 'downArrow');
     this.downArrow.anchor.set(0.5);
     this.downArrow.inputEnabled = true;
     this.downArrow.alpha = 0.8;
@@ -87,18 +95,24 @@ let padState= {
   },
 
   movePlayer: function () {
-    if(this.moveUp)
-      console.log('sopra');
-    else if(this.moveDown)
-      console.log('sotto');
+    if(this.moveDown)
+      socket.emit('moveDown');
+   else if(this.moveUp)
+      socket.emit('moveUp');
     else
-      console.log('fermo');
+      socket.emit('stop');
+  },
+
+  goFullScreen: function (pointer, doubleTap) {
+    if(doubleTap) {
+      game.scale.startFullScreen();
+    }
   }
 
 
 };
 
 //Crea scena di gioco
-var game = new Phaser.Game(500, 200);
+var game = new Phaser.Game(800, 400);
 game.state.add('pad', padState);
 game.state.start('pad');
