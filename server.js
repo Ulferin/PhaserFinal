@@ -11,10 +11,10 @@ app.use(device.capture());
 app.use(express.static(__dirname + '/public'));
 
 //Differenzia accessi da mobile e pc
-app.get('/game', function (req, res) {
+app.get('/', function (req, res) {
   //Invia pagina web in base a tipo di dispositivo
   if(req.device.type === 'desktop')
-    res.sendFile(__dirname + '/public/index.html');
+    res.sendFile(__dirname + '/public/desktop.html');
   else
     res.sendFile(__dirname + '/public/mobile.html');
 });
