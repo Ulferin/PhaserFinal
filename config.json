@@ -1,1 +1,1 @@
-{"mainMenu":{"name":"Multi Pong","start":"Start game","options":"Options","edit":"Edit Map","size":15},"options":{"map":[1,2],"lives":[3,5,7],"bonus":["yes","no"],"time":[0,60,180]},"preferences":{"map":1,"lives":0,"bonus":1,"time":0}}
+{"mainMenu":{"name":"Three Way Pong!","start":"Start game","options":"Options","edit":"Edit Map","size":15},"options":{"map":[1,2],"lives":[3,5,7],"bonus":["yes","no"],"time":[0,60,180]},"preferences":{"map":1,"lives":0,"bonus":1,"time":0}}

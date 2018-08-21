@@ -12,6 +12,7 @@ let editorState = {
     this.layer1.resizeWorld();
 
     this.createTileSelector();
+    this.drawGrid();
 
     //Crea contorno per selezione tile
     this.marker = game.add.graphics();
@@ -27,7 +28,11 @@ let editorState = {
     this.hidePalette.onDown.add(this.hide, this);
 
     //Evita la comparsa del menu al click destro
-    game.canvas.oncontextmenu = function (e) { e.preventDefault(); }
+    game.canvas.oncontextmenu = function (e) { e.preventDefault(); };
+
+    this.createDraggable();
+
+    game.input.keyboard.addKey(Phaser.KeyCode.S).onDown.add(this.playMap, this);
   },
 
   createTileSelector: function() {
@@ -48,6 +53,19 @@ let editorState = {
 
   },
 
+  drawGrid: function() {
+    //Crea griglia per facilitare disegno e posizionamento draggable
+    this.grid = game.add.graphics();
+    this.grid.lineStyle(2, 0xffffff, 1);
+    this.grid.alpha = 0.2;
+    for(let i=0; i<25; i++) {
+      this.grid.drawRect(i*32, 0, 1, 19*32);
+    }
+    for(let i=0; i<19; i++) {
+      this.grid.drawRect(0, i*32, 25*32, 1);
+    }
+  },
+
   pickTile: function (sprite, pointer) {
     //Arrotonda l'input al multiplo più piccolo di 32 e divide per 32 in modo da ottenere la coordinata del tile
     this.currentTile = game.math.snapToFloor(pointer.x, 32) / 32;
@@ -57,6 +75,13 @@ let editorState = {
     //getTile restituisce la coordinata del tile, quindi va moltiplicata per la grandezza del tile
     this.marker.x = this.layer1.getTileX(game.input.activePointer.worldX) * 32;
     this.marker.y = this.layer1.getTileX(game.input.activePointer.worldY) * 32;
+
+    if(this.pointerOverDraggable()) {
+      this.marker.alpha = 0;
+      return;
+    }
+    else
+      this.marker.alpha = 1;
 
     //Rimuove tile se tast destro premuto
     if(game.input.mousePointer.rightButton.isDown)
@@ -73,12 +98,53 @@ let editorState = {
     //Visualizza o copre tileselector
     if(this.visible) {
       game.add.tween(this.tileStrip).to({y: -50}, 500).start();
+      game.add.tween(this.tileSelector).to({alpha: 0}, 500).start();
       this.visible = false;
     }
     else {
       game.add.tween(this.tileStrip).to({y: 0}, 500).start();
+      game.add.tween(this.tileSelector).to({alpha: 1}, 500).start();
       this.visible = true;
     }
+  },
+
+  createDraggable: function () {
+    this.player = game.add.sprite(64, game.height/2, 'player');
+    this.player.inputEnabled = true;
+    this.player.input.enableDrag();
+    this.player.events.onDragStop.add(this.draggablePosition, this);
+
+    this.enemy = game.add.sprite(game.width - 64, game.height/2, 'enemy');
+    this.enemy.inputEnabled = true;
+    this.enemy.input.enableDrag();
+    this.enemy.events.onDragStop.add(this.draggablePosition, this);
+
+    this.ball = game.add.sprite(game.width/2, game.height/2, 'ball');
+    this.ball.inputEnabled = true;
+    this.ball.input.enableDrag();
+    this.ball.events.onDragStop.add(this.draggablePosition, this);
+  },
+
+  draggablePosition: function (dragged) {
+    //Riposiziona barretta seguendo la griglia di tile solo se si preme control al rilascio del drag
+    if(game.input.keyboard.isDown(Phaser.KeyCode.CONTROL)) {
+      dragged.x = game.math.snapToFloor(dragged.x, 32);
+      dragged.y = game.math.snapToFloor(dragged.y, 32);
+    }
+  },
+
+  pointerOverDraggable: function () {
+    return this.player.input.pointerOver() || this.enemy.input.pointerOver() || this.ball.input.pointerOver();
+  },
+
+  playMap: function () {
+    console.log(this.map);
+    this.map.setCollision([0,1,2]);
+    this.grid.destroy();
+    this.marker.destroy();
+    this.tileStrip.destroy();
+    this.tileSelectorBackground.destroy();
+    game.state.start('main', false, false, {"map":this.map, "layer":this.layer1, "player":this.player, "enemy":this.enemy, "ball":this.ball});
   }
   
 };

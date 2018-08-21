@@ -5,6 +5,26 @@
 * */
 var mainState = {
 
+  init: function(data) {
+    if(data !== undefined) {
+      //game.load.tilemap('map', '', data.map, Phaser.Tilemap.TILED_JSON);
+      //this.map = game.add.tilemap('map');
+      //this.map.addTilesetImage('tileset');
+      this.objects = game.add.group();
+      this.map = data.map;
+      this.layer = data.layer;
+      this.layer.resizeWorld();
+      this.player = data.player;
+      this.enemy = data.enemy;
+      this.ball = data.ball;
+      this.objects.add(this.player);
+      this.objects.add(this.enemy);
+      this.objects.add(this.ball);
+    }
+    else
+      this.createMap(config.preferences.map)
+  },
+
   preload: function () {
 
   },
@@ -15,11 +35,10 @@ var mainState = {
     this.deviation.X = 1;
 
     //Avvia il gioco con la mappa selezionata nelle opzioni
-    this.createMap(config.preferences.map);
+    //this.createMap(config.preferences.map);
 
     //Recupera oggetti da tilemap
-    this.objects = game.add.group();
-    this.map.createFromObjects('object1', 2, 'player', 0, true, false, this.objects);
+
 
     //crea oggetto per gestione input frecce direzionali
     //non propaga l'input al browser
@@ -29,7 +48,7 @@ var mainState = {
     );
 
     //Imposta proprietà barra player
-    this.player = this.objects.children[0];
+
     game.physics.arcade.enable(this.player);
     this.player.checkWorldBounds = true;
     this.player.body.collideWorldBounds = true;
@@ -37,8 +56,7 @@ var mainState = {
     this.setSocket(this.player, this.deviation);
 
     //Recupera barra nemica e imposta proprietà
-    this.map.createFromObjects('object1', 3, 'enemy', 0, true, false, this.objects);
-    this.enemy = this.objects.children[1];
+
     game.physics.arcade.enable(this.enemy);
     this.enemy.checkWorldBounds = true;
     this.enemy.body.collideWorldBounds = true;
@@ -46,8 +64,7 @@ var mainState = {
     this.enemy.body.drag = true;
 
     //Recupera palla e imposta proprietà
-    this.map.createFromObjects('object1', 4, 'ball', 0, true, false, this.objects);
-    this.ball = this.objects.children[2];
+
     this.ball.checkWorldBounds = true;
     this.ball.collideWorldBounds = true;
     game.physics.arcade.enable(this.ball);
@@ -139,6 +156,14 @@ var mainState = {
     this.layer = this.map.createLayer('layer1');
     this.layer.resizeWorld();
     this.map.setCollision(1);
+
+    this.objects = game.add.group();
+    this.map.createFromObjects('object1', 2, 'player', 0, true, false, this.objects);
+    this.player = this.objects.children[0];
+    this.map.createFromObjects('object1', 3, 'enemy', 0, true, false, this.objects);
+    this.enemy = this.objects.children[1];
+    this.map.createFromObjects('object1', 4, 'ball', 0, true, false, this.objects);
+    this.ball = this.objects.children[2];
   },
 
   goToMenu: function () {
