@@ -99,6 +99,7 @@ var mainState = {
 
     //Decide direzione pallina in base ad inclinazione calcolata
     this.ball.body.velocity.y = (5 * this.deviation.Y);
+    game.add.tween(this.ball).to({alpha:0.2}, 50).to({alpha:1},50).start();
   },
   
   movePlayer: function () {
