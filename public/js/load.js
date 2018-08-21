@@ -19,6 +19,7 @@ let loadState = {
     //game.load.image('star', 'assets/star.png');
     game.load.image('wall0', 'assets/wall0.png');
     game.load.image('wall1', 'assets/wall1.png');
+    game.load.image('tileset', 'assets/maptileset.png');
     game.load.image('player', 'assets/player.png');
     game.load.image('enemy', 'assets/enemy.png');
     game.load.image('ball', 'assets/ball.png');

@@ -17,6 +17,7 @@ game.state.add('load', loadState);
 game.state.add('menu', menuState);
 game.state.add('main', mainState);
 game.state.add('options', optionsState);
+game.state.add('editor', editorState);
 
 //Avvia gioco
 game.state.start('boot');

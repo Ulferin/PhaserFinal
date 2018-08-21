@@ -1,15 +1,5 @@
 //TODO aggiungere tasto per mutare suono
 
-let distance = 300;
-let speed = 2;
-let star;
-let texture;
-
-let max = 300;
-let xx = [];
-let yy = [];
-let zz = [];
-
 /*
 * menuState rappresenta il menu di gioco in cui è possibile scegliere
 * alcune delle impostazioni di gioco e utilizzarle per le partite successive
@@ -17,18 +7,6 @@ let zz = [];
 let menuState = {
 
   create: function () {
-
-    /*//Crea sprite per stelle e texture
-    star = game.add.sprite(0, 0, 'star');
-    star.alpha = 0.5;
-    texture = game.add.renderTexture(game.width, game.height, 'texture');
-    game.add.sprite(0, 0, texture);
-
-    for (var i = 0; i < max; i++) {
-      xx[i] = Math.floor(Math.random() * 800) - 400;
-      yy[i] = Math.floor(Math.random() * 600) - 300;
-      zz[i] = Math.floor(Math.random() * 1700) - 100;
-    }*/
 
     this.createMap(config.preferences.map);
     this.layer.alpha = 0.5;
@@ -48,8 +26,8 @@ let menuState = {
     startLabel.anchor.set(0.5);
     startLabel.fontSize = config.mainMenu.size;
     startLabel.inputEnabled = true;
-    startLabel.events.onInputOver.add(this.selectedText, this, 0, startLabel);
-    startLabel.events.onInputOut.add(this.inputOutText, this, 0, startLabel);
+    startLabel.events.onInputOver.add(this.selectedText);
+    startLabel.events.onInputOut.add(this.inputOutText);
     startLabel.events.onInputDown.add(this.startGame);
 
     var optionsLabel = game.add.text(game.width/2, startLabel.y + startLabel.height*2,
@@ -57,28 +35,18 @@ let menuState = {
     optionsLabel.anchor.set(0.5);
     optionsLabel.fontSize = config.mainMenu.size;
     optionsLabel.inputEnabled = true;
-    optionsLabel.events.onInputOver.add(this.selectedText, this, 0, startLabel);
-    optionsLabel.events.onInputOut.add(this.inputOutText, this, 0, startLabel);
+    optionsLabel.events.onInputOver.add(this.selectedText);
+    optionsLabel.events.onInputOut.add(this.inputOutText);
     optionsLabel.events.onInputDown.add(this.openOptions);
-  },
 
-  update: function() {
-    /*texture.clear();
-
-    for (var i = 0; i < max; i++) {
-      var perspective = distance / (distance - zz[i]);
-      var x = game.world.centerX + xx[i] * perspective;
-      var y = game.world.centerY + yy[i] * perspective;
-
-      zz[i] += speed;
-
-      if (zz[i] > 300)
-      {
-        zz[i] -= 600;
-      }
-
-      texture.renderXY(star, x, y);
-    }*/
+    var editLabel = game.add.text(game.width/2, optionsLabel.y + optionsLabel.height*2,
+      config.mainMenu.edit, { font: 'Press Start 2P', fill: '#ffffff'});
+    editLabel.anchor.set(0.5);
+    editLabel.fontSize = config.mainMenu.size;
+    editLabel.inputEnabled = true;
+    editLabel.events.onInputOver.add(this.selectedText);
+    editLabel.events.onInputOut.add(this.inputOutText);
+    editLabel.events.onInputDown.add(this.openEditor);
   },
 
   //Aggiunge animazione per testo selezionato
@@ -102,6 +70,10 @@ let menuState = {
   startGame: function () {
     //Avvia stato di gioco
     game.state.start('main');
+  },
+
+  openEditor: function() {
+    game.state.start('editor');
   },
 
   createMap: function (mapNum) {
