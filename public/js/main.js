@@ -141,6 +141,10 @@ var mainState = {
   },
 
   goToMenu: function () {
+    //Rimuove i listener prima di passare al menu
+    socket.removeListener('stop');
+    socket.removeListener('moveUp');
+    socket.removeListener('moveDown');
     game.state.start('menu');
   }
 
