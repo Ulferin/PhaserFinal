@@ -30,6 +30,19 @@ var mainState = {
   },
 
   create: function () {
+
+    this.emitter = game.add.emitter(game.world.centerX, game.world.centerY, 30);
+    this.emitter.particleAnchor.set(0.5);
+    this.emitter.gravity = 0;
+    this.emitter.maxParticleSpeed = 0;
+    this.emitter.minRotation = 0;
+    this.emitter.maxRotation = 0;
+    this.emitter.setAlpha(1, 0, 250);
+
+    this.emitter.makeParticles('ball');
+    this.emitter.start(false,300,0);
+    this.emitter.on = true;
+
     this.deviation = {};
     this.deviation.Y = 0;
     this.deviation.X = 0;
@@ -104,6 +117,8 @@ var mainState = {
 
     this.movePlayer();
     this.moveEnemy();
+    this.emitter.x = this.ball.centerX;
+    this.emitter.y = this.ball.centerY;
 
     if(!this.ball.alive) {
       this.newGame();
