@@ -55,4 +55,12 @@ io.on('connection', function (socket) {
   socket.on('stop', function () {
     io.to(lastPlayerID).emit('stop');
   });
+
+  socket.on('bonus', function () {
+    io.to(lastPlayerID).emit('bonus');
+  });
+
+  socket.on('bonusDown', function () {
+    io.to(lastPlayerID).emit('bonus');
+  })
 });

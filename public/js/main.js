@@ -31,8 +31,12 @@ var mainState = {
 
   create: function () {
     this.deviation = {};
-    this.deviation.Y = 1;
-    this.deviation.X = 1;
+    this.deviation.Y = 0;
+    this.deviation.X = 0;
+    this.bonus = false;
+    this.score1 = 0;
+    this.score2 = 0;
+
 
     //Avvia il gioco con la mappa selezionata nelle opzioni
     //this.createMap(config.preferences.map);
@@ -53,7 +57,7 @@ var mainState = {
     this.player.checkWorldBounds = true;
     this.player.body.collideWorldBounds = true;
     this.player.body.immovable = true;
-    this.setSocket(this.player, this.deviation);
+
 
     //Recupera barra nemica e imposta proprietà
 
@@ -73,10 +77,23 @@ var mainState = {
     this.ball.body.bounce.x = 1;
     this.ball.body.bounce.y = 1;
     this.ball.outOfBoundsKill = true;
+    this.ball.events.onOutOfBounds.add(this.ballOut, this);
 
     //aggiunge listener per nuovo livello
     this.esc = game.input.keyboard.addKey(Phaser.KeyCode.ESC);
     this.esc.onDown.add(this.goToMenu, this);
+
+    this.setSocket(this.player, this.deviation, this.bonus, this.ball, this);
+
+    this.score1Label = game.add.text(game.width/2-50, game.height*0.8,
+      this.score1, { font: 'Press Start 2P', fill: '#ffffff' });
+    this.score1Label.anchor.set(0.5);
+    this.score1Label.fontSize = 30;
+
+    this.score2Label = game.add.text(game.width/2 + 50, game.height*0.8,
+      this.score2, { font: 'Press Start 2P', fill: '#ffffff' });
+    this.score2Label.anchor.set(0.5);
+    this.score2Label.fontSize = 30;
   },
 
   update: function () {
@@ -88,11 +105,12 @@ var mainState = {
     this.movePlayer();
     this.moveEnemy();
 
-    if(!this.ball.alive)
+    if(!this.ball.alive) {
       this.newGame();
+    }
   },
 
-  setSocket: function (player, deviation) {
+  setSocket: function (player, deviation, bonus, ball, mainState) {
     console.log(player);
     socket.on('prova', function (data) {
       deviation.Y = data.Y;
@@ -110,13 +128,26 @@ var mainState = {
     socket.on('stop', function () {
       player.body.velocity.y = 0;
     });
+
+    socket.on('bonus', function () {
+      if(mainState.bonus === false) {
+        mainState.bonus = true;
+        mainState.ball.body.velocity.x *= 2;
+        mainState.ball.body.velocity.y *= 2;
+      }
+      else {
+        mainState.bonus = false;
+        mainState.ball.body.velocity.x /= 2;
+        mainState.ball.body.velocity.y /= 2;
+      }
+      console.log(mainState.bonus);
+    });
   },
   
   ballHitPlayer: function () {
 
     //Decide direzione pallina in base ad inclinazione calcolata
     this.ball.body.velocity.y = (5 * this.deviation.Y);
-    game.add.tween(this.ball).to({alpha:0.2}, 50).to({alpha:1},50).start();
   },
   
   movePlayer: function () {
@@ -134,17 +165,19 @@ var mainState = {
     //Il giocatore avversario per ora si muove come se seguisse la pallina
     if(this.ball.body.x > this.game.width/2) {
       if(this.ball.body.y < this.enemy.body.y + this.enemy.height/2)
-        this.enemy.body.velocity.y = -300;
+        this.enemy.body.velocity.y = -100;
       else if (this.ball.body.y === this.enemy.body.y + this.enemy.height/2)
         this.enemy.body.velocity.y = 0;
       else
-        this.enemy.body.velocity.y = 300;
+        this.enemy.body.velocity.y = 100;
     }
     else
       this.enemy.body.velocity.y = 0;
   },
 
   newGame: function () {
+    console.log(this.bonus);
+    this.bonus = false;
     this.ball.reset(this.game.width/2, this.game.height/2);
     this.ball.body.velocity.x = 350;
     this.ball.body.velocity.y = 50;
@@ -171,7 +204,20 @@ var mainState = {
     socket.removeListener('stop');
     socket.removeListener('moveUp');
     socket.removeListener('moveDown');
+    socket.removeListener('bonus');
     game.state.start('menu');
+  },
+
+  ballOut: function () {
+    console.log(this.ball.x);
+    if(this.ball.x > game.width) {
+      this.score1Label.text = ++this.score1;
+      game.add.tween(this.score1Label).to({fontSize: 40}, 150).to({fontSize:30}, 150).start();
+    }
+    else {
+      this.score2Label.text = ++this.score2;
+      game.add.tween(this.score2Label).to({fontSize: 40}, 150).to({fontSize: 30}, 150).start();
+    }
   }
 
 };

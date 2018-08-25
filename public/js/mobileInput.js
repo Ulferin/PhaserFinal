@@ -5,6 +5,7 @@ let padState= {
   preload: function () {
     game.load.image('upArrow', 'assets/up_arrow.png');
     game.load.image('downArrow', 'assets/down_arrow.png');
+    game.load.image('speedup', 'assets/speedup_bonus.png');
   },
 
   create: function () {
@@ -56,6 +57,12 @@ let padState= {
     this.downArrow.alpha = 0.8;
     this.downArrow.events.onInputDown.add(this.setDownTrue, this);
     this.downArrow.events.onInputUp.add(this.setDownFalse, this);
+
+    this.speedup = game.add.sprite(game.width/2, game.height/2, 'speedup');
+    this.speedup.anchor.set(0.5);
+    this.speedup.inputEnabled = true;
+    this.speedup.alpha = 0.8;
+    this.speedup.events.onInputDown.add(this.setBonus, this);
   },
 
   setOrientationListener: function () {
@@ -107,6 +114,10 @@ let padState= {
     if(doubleTap) {
       game.scale.startFullScreen();
     }
+  },
+
+  setBonus: function () {
+    socket.emit('bonus');
   }
 
 
