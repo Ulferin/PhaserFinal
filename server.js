@@ -14,13 +14,11 @@ var lastPlayerID = 0;
 
 //Differenzia accessi da mobile e pc
 app.get('/', function (req, res) {
-  if(lastPlayerID === 0) {
-    //Invia pagina web in base a tipo di dispositivo
-    if (req.device.type === 'desktop')
-      res.sendFile(__dirname + '/public/desktop.html');
-    else
-      res.sendFile(__dirname + '/public/mobile.html');
-  }
+  //Invia pagina web in base a tipo di dispositivo
+  if(req.device.type === 'desktop')
+    res.sendFile(__dirname + '/public/desktop.html');
+  else
+    res.sendFile(__dirname + '/public/mobile.html');
 });
 
 //Attende richieste su porta 8080
