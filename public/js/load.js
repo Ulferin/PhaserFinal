@@ -6,17 +6,17 @@
 let loadState = {
 
   preload: function () {
-    //Imposta testo e barra di caricamento
-    let loadingLabel = game.add.text(game.width/2, 150, 'loading...',
+    //Imposta testo caricamento
+    this.loadingLabel = game.add.text(game.width/2, 150, 'loading...',
       {font: '20px Press Start 2P', fill: '#ffffff'});
-    loadingLabel.anchor.set(0.5);
+    this.loadingLabel.anchor.set(0.5);
 
-    let progressBar = game.add.sprite(game.width/2, 200, 'progressBar');
-    progressBar.anchor.set(0.5);
-    game.load.setPreloadSprite(progressBar);
+    //Setta barra di caricamento
+    this.progressBar = game.add.sprite(game.width/2, 200, 'progressBar');
+    this.progressBar.anchor.set(0.5);
+    game.load.setPreloadSprite(this.progressBar);
 
-    //TODO caricamento assets gioco
-    //game.load.image('star', 'assets/star.png');
+    //Carica elementi di gioco
     game.load.image('wall0', 'assets/wall0.png');
     game.load.image('wall1', 'assets/wall1.png');
     game.load.image('tileset', 'assets/maptileset.png');

@@ -3,6 +3,7 @@ var socket = io.connect();
 let padState= {
 
   preload: function () {
+    //Carica assets
     game.load.image('upArrow', 'assets/up_arrow.png');
     game.load.image('downArrow', 'assets/down_arrow.png');
     game.load.image('speedup', 'assets/speedup_bonus.png');
@@ -16,26 +17,27 @@ let padState= {
     //Imposta interfaccia gamepad
     game.stage.backgroundColor = '#000';
     this.addMobileButton();
+
     //Imposta la copertura dell'intera parte di schermo
     game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
     game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
-    // Set the min and max width/height of the game
+
+    //Imposta dimensione massima e minima
     game.scale.setMinMax(game.width/2, game.height/2,
       game.width*2, game.height*2);
+
     //Centra il gioco nello schermo
     game.scale.pageAlignHorizontally = true;
     game.scale.pageAlignVertically = true;
-    // Add a blue color to the page to hide potential white borders
+
+    //Imposta colore background
     document.body.style.backgroundColor = '#000';
 
     //Variabili per tracciamento input
     this.moveUp = false;
     this.moveDown = false;
 
-    //aggiunge listener per nuovo livello
-    //this.esc = game.input.keyboard.addKey(Phaser.KeyCode.ESC);
-    //this.esc.onDown.add(this.goFullScreen, this);
-
+    //Listener doppio tap per fullscreen
     game.input.onTap.add(this.goFullScreen, this);
   },
 
@@ -81,7 +83,7 @@ let padState= {
       }, true);
     }
     else {
-      alert("Sorry, your browser doesn't support Device Orientation");
+      alert("Il browser non supporta i sensori.");
     }
   },
 
@@ -102,6 +104,7 @@ let padState= {
   },
 
   movePlayer: function () {
+    //Invia segnale al server in base a tasto premuto
     if(this.moveDown)
       socket.emit('moveDown');
    else if(this.moveUp)

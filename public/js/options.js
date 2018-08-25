@@ -4,8 +4,10 @@ let currConf = null;
 let optionsState = {
 
   create: function () {
+    //Mappa attuale
     this.mapNum = config.preferences.map;
 
+    //Crea mappa
     this.map = game.add.tilemap('arena' + this.mapNum);
     this.map.addTilesetImage('wall' + this.mapNum);
     this.layer = this.map.createLayer('layer1');
@@ -17,9 +19,7 @@ let optionsState = {
 
     //Recupera impostazioni e relativi valori
     let optlist = Object.keys(config.options);
-    console.log(optlist);
     let valuelist = Object.values(config.options);
-    console.log(valuelist);
 
     //Crea lista di impostazioni modificabili
     for(let i=0; i<optlist.length; i++) {
@@ -44,7 +44,6 @@ let optionsState = {
     saveLabel.anchor.setTo(0.5,0.5);
     saveLabel.fontSize = config.mainMenu.size;
     saveLabel.inputEnabled = true;
-
     saveLabel.events.onInputOver.add(this.selectedText, this, 0, saveLabel);
     saveLabel.events.onInputOut.add(this.inputOutText, this, 0, saveLabel);
     saveLabel.events.onInputDown.add(this.saveConfig);
@@ -55,7 +54,6 @@ let optionsState = {
     exitLabel.anchor.setTo(0.5,0.5);
     exitLabel.fontSize = config.mainMenu.size;
     exitLabel.inputEnabled = true;
-
     exitLabel.events.onInputOver.add(this.selectedText, this, 0, exitLabel);
     exitLabel.events.onInputOut.add(this.inputOutText, this, 0, exitLabel);
     exitLabel.events.onInputDown.add(this.discardConfig);
@@ -79,6 +77,7 @@ let optionsState = {
     opt.text = opt.optType + ": " + opt.values[(++opt.currentValue)%opt.values.length];
     currConf.preferences[opt.optType] = (opt.currentValue)%opt.values.length;
 
+    //Se la mappa selezionata è diversa dalla precedente aggiorna il background
     if(this.mapNum !== currConf.preferences.map) {
       this.mapNum = currConf.preferences.map;
       this.map.destroy();
