@@ -1,3 +1,5 @@
+//TODO inserire schermata iniziale
+
 var socket = io.connect();
 
 let padState= {
