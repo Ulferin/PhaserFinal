@@ -17,7 +17,9 @@ let optionsState = {
 
     //Recupera impostazioni e relativi valori
     let optlist = Object.keys(config.options);
+    console.log(optlist);
     let valuelist = Object.values(config.options);
+    console.log(valuelist);
 
     //Crea lista di impostazioni modificabili
     for(let i=0; i<optlist.length; i++) {

@@ -9,7 +9,7 @@ let editorState = {
 
     //Crea nuovo layer e setta dimensioni mappa
     this.layer1 = this.map.create('layer1', 25, 19, 32, 32);
-    this.layer1.resizeWorld();
+    //this.layer1.resizeWorld();
 
     this.createTileSelector();
     this.drawGrid();

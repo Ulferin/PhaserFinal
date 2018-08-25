@@ -13,7 +13,7 @@ var mainState = {
       this.objects = game.add.group();
       this.map = data.map;
       this.layer = data.layer;
-      this.layer.resizeWorld();
+      //this.layer.resizeWorld();
       this.player = data.player;
       this.enemy = data.enemy;
       this.ball = data.ball;
@@ -72,7 +72,7 @@ var mainState = {
     this.ball.checkWorldBounds = true;
     this.ball.collideWorldBounds = true;
     game.physics.arcade.enable(this.ball);
-    this.ball.body.velocity.x = -350;
+    this.ball.body.velocity.x = -450;
     this.ball.body.velocity.y = 0;
     this.ball.body.bounce.x = 1;
     this.ball.body.bounce.y = 1;
@@ -118,11 +118,11 @@ var mainState = {
     });
 
     socket.on('moveUp', function () {
-      player.body.velocity.y = -300;
+      player.body.velocity.y = -300 * config.options["pad speed"][config.preferences["pad speed"]];
     });
 
     socket.on('moveDown', function () {
-      player.body.velocity.y = 300;
+      player.body.velocity.y = 300 * config.options["pad speed"][config.preferences["pad speed"]];
     });
 
     socket.on('stop', function () {
@@ -179,7 +179,7 @@ var mainState = {
     console.log(this.bonus);
     this.bonus = false;
     this.ball.reset(this.game.width/2, this.game.height/2);
-    this.ball.body.velocity.x = 350;
+    this.ball.body.velocity.x = 450;
     this.ball.body.velocity.y = 50;
   },
 
@@ -187,7 +187,7 @@ var mainState = {
     this.map = game.add.tilemap('arena' + mapNum);
     this.map.addTilesetImage('wall' + mapNum);
     this.layer = this.map.createLayer('layer1');
-    this.layer.resizeWorld();
+    //this.layer.resizeWorld();
     this.map.setCollision(1);
 
     this.objects = game.add.group();
