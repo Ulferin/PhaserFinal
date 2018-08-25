@@ -10,13 +10,17 @@ app.use(device.capture());
 //Crea cartella virtuale
 app.use(express.static(__dirname + '/public'));
 
+var lastPlayerID = 0;
+
 //Differenzia accessi da mobile e pc
 app.get('/', function (req, res) {
-  //Invia pagina web in base a tipo di dispositivo
-  if(req.device.type === 'desktop')
-    res.sendFile(__dirname + '/public/desktop.html');
-  else
-    res.sendFile(__dirname + '/public/mobile.html');
+  if(lastPlayerID === 0) {
+    //Invia pagina web in base a tipo di dispositivo
+    if (req.device.type === 'desktop')
+      res.sendFile(__dirname + '/public/desktop.html');
+    else
+      res.sendFile(__dirname + '/public/mobile.html');
+  }
 });
 
 //Attende richieste su porta 8080
@@ -25,9 +29,14 @@ server.listen(process.env.PORT || 8080, function () {
 });
 
 //TODO cambiare nome variabile
-var lastPlayerID = 0;
+
 
 io.on('connection', function (socket) {
+  // when a player disconnects
+  socket.on('disconnect', function () {
+    lastPlayerID = 0;
+  });
+
   socket.on('reqConfig', function() {
     //TODO attenzione perchè in questo modo si controlla sempre l'ultima finestra aperta sul gioco
     lastPlayerID = socket.id;
