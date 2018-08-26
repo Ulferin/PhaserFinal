@@ -43,6 +43,17 @@ let padState= {
 
     //Listener doppio tap per fullscreen
     game.input.onTap.add(this.goFullScreen, this);
+
+    //Crea label per la visualizzazione del punteggio
+    var scoreLabel = game.add.text(game.width/2, game.height*0.8, 'score: 0'
+      , { font: 'Press Start 2P', fill: '#ffffff' });
+    scoreLabel.anchor.set(0.5);
+    scoreLabel.fontSize = 20;
+
+    //Aggiorna punteggio
+    socket.on('updateScore', function (score) {
+      scoreLabel.text = 'score: ' + score;
+    });
   },
 
   update: function () {

@@ -89,19 +89,6 @@ var mainState = {
 
     //Setta callback socket
     this.setSocket(this);
-
-    //Crea label per la visualizzazione del punteggio
-    this.score1Label = game.add.text(game.width/2-50, game.height*0.8,
-      this.score1, { font: 'Press Start 2P', fill: '#ffffff' });
-    this.score1Label.anchor.set(0.5);
-    this.score1Label.fontSize = 30;
-
-    this.score2Label = game.add.text(game.width/2 + 50, game.height*0.8,
-      this.score2, { font: 'Press Start 2P', fill: '#ffffff' });
-    this.score2Label.anchor.set(0.5);
-    this.score2Label.fontSize = 30;
-
-    //TODO fare in modo che al raggiungimento di un punteggio blocca gioco
   },
 
   update: function () {
@@ -212,12 +199,10 @@ var mainState = {
   ballOut: function () {
     //Assegna punto in base alla direzione di uscita della pallina
     if(this.ball.x > game.width) {
-      this.score1Label.text = ++this.score1;
-      game.add.tween(this.score1Label).to({fontSize: 40}, 150).to({fontSize:30}, 150).start();
+      socket.emit('updateScore1', ++this.score1);
     }
     else {
-      this.score2Label.text = ++this.score2;
-      game.add.tween(this.score2Label).to({fontSize: 40}, 150).to({fontSize: 30}, 150).start();
+      socket.emit('updateScore2', ++this.score2);
     }
 
     //Se è stato raggiunto il limite di punteggio mostra schermata gameover, altrimenti riposiziona pallina

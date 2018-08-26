@@ -124,7 +124,17 @@ io.on('connection', function (socket) {
 
   socket.on('bonusDown', function () {
     io.to(desktopClient.id).emit('bonus');
-  })
+  });
   /* --------------------------------------------------------------------------------- */
+
+  /* ----- Notifiche aggiornamento punteggio ----- */
+  socket.on('updateScore1', function (score) {
+    io.to(phoneClient1.id).emit('updateScore', score);
+  });
+
+  socket.on('updateScore2', function (score) {
+    io.to(phoneClient2.id).emit('updateScore', score);
+  })
+  /* --------------------------------------------- */
 
 });

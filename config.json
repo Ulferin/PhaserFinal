@@ -1,1 +1,1 @@
-{"mainMenu":{"name":"Three Way Pong!","start":"Start game","options":"Options","edit":"Edit Map","size":15},"options":{"map":[1,2],"pad speed":[1,2],"score limit":[0,5,10]},"preferences":{"map":0,"pad speed":0,"score limit":0}}
+{"mainMenu":{"name":"Three Way Pong!","start":"Start game","options":"Options","edit":"Edit Map","size":15},"options":{"map":[1,2],"pad speed":[1,2],"score limit":[0,5,10]},"preferences":{"map":0,"pad speed":1,"score limit":1}}
