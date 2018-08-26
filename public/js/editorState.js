@@ -145,7 +145,6 @@ let editorState = {
 
   playMap: function () {
     //Pulisce elementi editor e passa allo stato di gioco mantenendo la mappa
-    console.log(this.map);
     this.map.setCollision([0,1,2]);
     this.grid.destroy();
     this.marker.destroy();

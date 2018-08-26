@@ -25,6 +25,9 @@ var mainState = {
 
   create: function () {
 
+    //Limite punteggio
+    this.scoreLimit = config.options["score limit"][config.preferences["score limit"]];
+
     //Crea emitter per scia palla
     this.emitter = game.add.emitter(game.world.centerX, game.world.centerY, 30);
     this.emitter.particleAnchor.set(0.5);
@@ -78,7 +81,6 @@ var mainState = {
     this.ball.body.velocity.y = 0;
     this.ball.body.bounce.x = 1;
     this.ball.body.bounce.y = 1;
-    this.ball.outOfBoundsKill = true;
     this.ball.events.onOutOfBounds.add(this.ballOut, this);
 
     //aggiunge listener per nuovo livello
@@ -114,12 +116,6 @@ var mainState = {
     //Aggiorna posizione emitter per scia
     this.emitter.x = this.ball.centerX;
     this.emitter.y = this.ball.centerY;
-
-    //Se la pallina è uscita dall'area di gioco
-    //resetta la posizione
-    if(!this.ball.alive) {
-      this.newGame();
-    }
   },
 
   setSocket: function (mainState) {
@@ -165,7 +161,7 @@ var mainState = {
   
   moveEnemy: function () {
     //Muove barra nemico in base a posizione pallina
-    if(this.ball.body.x > this.game.width/2) {
+    if(this.ball.body.x > this.game.width/2 && this.ball.alive) {
       if(this.ball.body.y < this.enemy.body.y + this.enemy.height/2)
         this.enemy.body.velocity.y = -100;
       else if (this.ball.body.y === this.enemy.body.y + this.enemy.height/2)
@@ -219,6 +215,31 @@ var mainState = {
     else {
       this.score2Label.text = ++this.score2;
       game.add.tween(this.score2Label).to({fontSize: 40}, 150).to({fontSize: 30}, 150).start();
+    }
+
+    //Se è stato raggiunto il limite di punteggio mostra schermata gameover, altrimenti riposiziona pallina
+    if(!(this.scoreLimit === 0) && (this.score1 === this.scoreLimit || this.score2 === this.scoreLimit)) {
+      let bmd = game.add.bitmapData(1, 1);
+      bmd.fill(0, 0, 0);
+      let semiTransparentOverlay = game.add.sprite(0, 0, bmd);
+      semiTransparentOverlay.scale.setTo(game.width, game.height);
+      semiTransparentOverlay.alpha = 0;
+      game.add.tween(semiTransparentOverlay).to({alpha:0.5}, 250, Phaser.Easing.Quadratic.In, true);
+
+      this.gameOverLabel = game.add.text(game.width/2, game.height/2, "Game Over",
+        { font: '1px Press Start 2P', fill: '#ffffff' });
+      this.gameOverLabel.anchor.setTo(0.5, 0.5);
+      this.escLabel = game.add.text(game.width/2, this.gameOverLabel.y + 40, "Press ESC to exit.",
+        { font: '1px Press Start 2P', fill: '#ffffff' });
+      this.escLabel.anchor.setTo(0.5, 0.5);
+      game.add.tween(this.gameOverLabel).to({fontSize: 30}, 500, Phaser.Easing.Elastic.Out, true);
+      game.add.tween(this.escLabel).to({fontSize: 15}, 500, Phaser.Easing.Elastic.Out, true);
+
+      this.ball.kill();
+    }
+    else {
+      //Resetta posizione pallina quando esce dal bordo
+      this.newGame();
     }
   }
 
