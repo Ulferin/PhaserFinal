@@ -13,6 +13,8 @@ let padState= {
 
   create: function () {
 
+    socket.emit('padConnected');
+
     //Aggiunge listener per invio cambio rotazione
     this.setOrientationListener();
 

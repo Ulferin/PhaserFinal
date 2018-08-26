@@ -42,8 +42,8 @@ var mainState = {
 
     //Deviation rappresenta l'inclinazione del client mobile
     this.deviation = {};
-    this.deviation.Y = 0;
-    this.deviation.X = 0;
+    this.deviation.Y1 = 0;
+    this.deviation.Y2 = 0;
 
     //Indica se il bonus è attivo o meno
     this.bonus = false;
@@ -110,9 +110,6 @@ var mainState = {
     game.physics.arcade.collide(this.objects, this.layer);
     game.physics.arcade.collide(this.enemy, this.ball, this.ballHitPlayer, null, this);
 
-    //Muove barra nemico
-    this.moveEnemy();
-
     //Aggiorna posizione emitter per scia
     this.emitter.x = this.ball.centerX;
     this.emitter.y = this.ball.centerY;
@@ -120,22 +117,39 @@ var mainState = {
 
   setSocket: function (mainState) {
     //Imposta deviazione pallina
-    socket.on('deviation', function (data) {
-      mainState.deviation.Y = data.Y;
+    socket.on('deviation1', function (data) {
+      mainState.deviation.Y1 = data.Y;
+    });
 
+    socket.on("deviation2", function (data) {
+      mainState.deviation.Y2 = data.Y;
     });
 
     /* ----- Imposta movimento player in base ad evento ricevuto ----- */
-    socket.on('moveUp', function () {
+    socket.on('moveUp1', function () {
       mainState.player.body.velocity.y = -300 * config.options["pad speed"][config.preferences["pad speed"]];
     });
 
-    socket.on('moveDown', function () {
+    socket.on('moveDown1', function () {
       mainState.player.body.velocity.y = 300 * config.options["pad speed"][config.preferences["pad speed"]];
     });
 
-    socket.on('stop', function () {
+    socket.on('stop1', function () {
       mainState.player.body.velocity.y = 0;
+    });
+    /* --------------------------------------------------------------- */
+
+    /* ----- Imposta movimento enemy in base ad evento ricevuto ----- */
+    socket.on('moveUp2', function () {
+      mainState.enemy.body.velocity.y = -300 * config.options["pad speed"][config.preferences["pad speed"]];
+    });
+
+    socket.on('moveDown2', function () {
+      mainState.enemy.body.velocity.y = 300 * config.options["pad speed"][config.preferences["pad speed"]];
+    });
+
+    socket.on('stop2', function () {
+      mainState.enemy.body.velocity.y = 0;
     });
     /* --------------------------------------------------------------- */
 
@@ -154,23 +168,12 @@ var mainState = {
     });
   },
   
-  ballHitPlayer: function () {
+  ballHitPlayer: function (player, ball) {
     //Decide direzione pallina in base ad inclinazione ricevuta dal server
-    this.ball.body.velocity.y = (5 * this.deviation.Y);
-  },
-  
-  moveEnemy: function () {
-    //Muove barra nemico in base a posizione pallina
-    if(this.ball.body.x > this.game.width/2 && this.ball.alive) {
-      if(this.ball.body.y < this.enemy.body.y + this.enemy.height/2)
-        this.enemy.body.velocity.y = -100;
-      else if (this.ball.body.y === this.enemy.body.y + this.enemy.height/2)
-        this.enemy.body.velocity.y = 0;
-      else
-        this.enemy.body.velocity.y = 100;
-    }
+    if(player.key === "player")
+      this.ball.body.velocity.y = (5 * this.deviation.Y1);
     else
-      this.enemy.body.velocity.y = 0;
+      this.ball.body.velocity.y = (5 * this.deviation.Y2);
   },
 
   newGame: function () {

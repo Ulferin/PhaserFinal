@@ -19,7 +19,8 @@ app.use(express.static(__dirname + '/public'));
 
 //Ultimo client desktop/mobile connesso
 var desktopClient = {"connected":false, "id":0};
-var phoneClient = {"connected":false};
+var phoneClient1 = {"connected":false, "id":0};
+var phoneClient2 = {"connected": false, "id":0};
 
 //Differenzia accessi da mobile e pc
 app.get('/', function (req, res) {
@@ -28,9 +29,8 @@ app.get('/', function (req, res) {
     res.sendFile(__dirname + '/public/desktop.html');
     desktopClient.connected = true;
   }
-  else if(req.device.type !== 'desktop' && !phoneClient.connected) {
+  else if(req.device.type !== 'desktop' && (!phoneClient1.connected || !phoneClient2.connected)) {
     res.sendFile(__dirname + '/public/mobile.html');
-    phoneClient.connected = true;
   }
 });
 
@@ -48,11 +48,32 @@ io.on('connection', function (socket) {
       desktopClient.id = 0;
       desktopClient.connected = false;
     }
+    else if(socket.id === phoneClient1.id) {
+      phoneClient1.id = 0;
+      phoneClient1.connected = false;
+      console.log("player1 disconnected");
+    }
     else {
-      phoneClient.connected = false;
+      phoneClient2.id = 0;
+      phoneClient2.connected = false;
+      console.log("player2 disconnected");
     }
   });
 
+  //Accetta connessione da mobile
+  socket.on('padConnected', function () {
+    if(phoneClient1.id === 0) {
+      phoneClient1.id = socket.id;
+      phoneClient1.connected = true;
+      console.log("player1 connected");
+    }
+    else {
+      phoneClient2.id = socket.id;
+      phoneClient2.connected = true;
+      console.log("player2 connected");
+    }
+  });
+  
   //Richiesta file di configurazione
   socket.on('reqConfig', function() {
     desktopClient.id = socket.id;
@@ -67,20 +88,32 @@ io.on('connection', function (socket) {
 
   //Riceve dati inclinazione e li invia al client desktop
   socket.on('input', function(data) {
-    io.to(desktopClient.id).emit('deviation', data);
+    if(socket.id === phoneClient1.id)
+      io.to(desktopClient.id).emit('deviation1', data);
+    else
+      io.to(desktopClient.id).emit('deviation2', data);
   });
 
   /* ----- Notifiche movimento, inoltra al client desktop ----- */
   socket.on('moveUp', function () {
-    io.to(desktopClient.id).emit('moveUp');
+    if(socket.id === phoneClient1.id)
+      io.to(desktopClient.id).emit('moveUp1');
+    else
+      io.to(desktopClient.id).emit('moveUp2');
   });
 
   socket.on('moveDown', function () {
-    io.to(desktopClient.id).emit('moveDown');
+    if(socket.id === phoneClient1.id)
+      io.to(desktopClient.id).emit('moveDown1');
+    else
+      io.to(desktopClient.id).emit('moveDown2');
   });
 
   socket.on('stop', function () {
-    io.to(desktopClient.id).emit('stop');
+    if(socket.id === phoneClient1.id)
+      io.to(desktopClient.id).emit('stop1');
+    else
+      io.to(desktopClient.id).emit('stop2');
   });
   /* --------------------------------------------------------- */
 
