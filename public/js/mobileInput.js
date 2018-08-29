@@ -9,11 +9,16 @@ let padState= {
     game.load.image('upArrow', 'assets/up_arrow.png');
     game.load.image('downArrow', 'assets/down_arrow.png');
     game.load.image('speedup', 'assets/speedup_bonus.png');
+    this.load.atlas('generic', 'assets/generic-joystick.png', 'assets/generic-joystick.json');
   },
 
   create: function () {
 
     socket.emit('padConnected');
+
+    this.moveData = {
+      "y": 0
+    };
 
     //Aggiunge listener per invio cambio rotazione
     this.setOrientationListener();
@@ -37,10 +42,6 @@ let padState= {
     //Imposta colore background
     document.body.style.backgroundColor = '#000';
 
-    //Variabili per tracciamento input
-    this.moveUp = false;
-    this.moveDown = false;
-
     //Listener doppio tap per fullscreen
     game.input.onTap.add(this.goFullScreen, this);
 
@@ -61,20 +62,16 @@ let padState= {
   },
 
   addMobileButton: function() {
-    this.upArrow = game.add.sprite(50, game.height/2, 'upArrow');
-    this.upArrow.anchor.set(0.5);
-    this.upArrow.inputEnabled = true;
-    this.upArrow.alpha = 0.8;
-    this.upArrow.events.onInputDown.add(this.setUpTrue, this);
-    this.upArrow.events.onInputUp.add(this.setUpFalse, this);
+    //Carica plugin VirtualJoystick
+    this.pad = game.plugins.add(Phaser.VirtualJoystick);
 
-    this.downArrow = game.add.sprite(game.width - 75, game.height/2, 'downArrow');
-    this.downArrow.anchor.set(0.5);
-    this.downArrow.inputEnabled = true;
-    this.downArrow.alpha = 0.8;
-    this.downArrow.events.onInputDown.add(this.setDownTrue, this);
-    this.downArrow.events.onInputUp.add(this.setDownFalse, this);
+    //Setup stick direzionale
+    this.stick = this.pad.addStick(0, 0, 200, 'generic');
+    this.stick.showOnTouch = true;
+    this.stick.scale = 0.8;
+    this.stick.motionLock = Phaser.VirtualJoystick.VERTICAL;
 
+    //Aggiunge pulsante per bonus
     this.speedup = game.add.sprite(game.width/2, game.height/2, 'speedup');
     this.speedup.anchor.set(0.5);
     this.speedup.inputEnabled = true;
@@ -102,30 +99,11 @@ let padState= {
     }
   },
 
-  setUpTrue: function () {
-    this.moveUp = true;
-  },
-
-  setUpFalse: function () {
-    this.moveUp = false;
-  },
-
-  setDownTrue: function () {
-    this.moveDown = true;
-  },
-
-  setDownFalse: function () {
-    this.moveDown = false;
-  },
-
   movePlayer: function () {
-    //Invia segnale al server in base a tasto premuto
-    if(this.moveDown)
-      socket.emit('moveDown');
-   else if(this.moveUp)
-      socket.emit('moveUp');
-    else
-      socket.emit('stop');
+    //Invia segnale al server in base a direzione pad
+    this.moveData.y = this.stick.forceY;
+    socket.emit('move', this.moveData);
+
   },
 
   goFullScreen: function (pointer, doubleTap) {

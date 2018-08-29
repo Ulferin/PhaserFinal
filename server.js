@@ -95,25 +95,11 @@ io.on('connection', function (socket) {
   });
 
   /* ----- Notifiche movimento, inoltra al client desktop ----- */
-  socket.on('moveUp', function () {
+  socket.on('move', function (moveData) {
     if(socket.id === phoneClient1.id)
-      io.to(desktopClient.id).emit('moveUp1');
+      io.to(desktopClient.id).emit('move1', moveData);
     else
-      io.to(desktopClient.id).emit('moveUp2');
-  });
-
-  socket.on('moveDown', function () {
-    if(socket.id === phoneClient1.id)
-      io.to(desktopClient.id).emit('moveDown1');
-    else
-      io.to(desktopClient.id).emit('moveDown2');
-  });
-
-  socket.on('stop', function () {
-    if(socket.id === phoneClient1.id)
-      io.to(desktopClient.id).emit('stop1');
-    else
-      io.to(desktopClient.id).emit('stop2');
+      io.to(desktopClient.id).emit('move2', moveData)
   });
   /* --------------------------------------------------------- */
 

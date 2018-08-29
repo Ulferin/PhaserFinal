@@ -113,30 +113,15 @@ var mainState = {
     });
 
     /* ----- Imposta movimento player in base ad evento ricevuto ----- */
-    socket.on('moveUp1', function () {
-      mainState.player.body.velocity.y = -300 * config.options["pad speed"][config.preferences["pad speed"]];
-    });
-
-    socket.on('moveDown1', function () {
-      mainState.player.body.velocity.y = 300 * config.options["pad speed"][config.preferences["pad speed"]];
-    });
-
-    socket.on('stop1', function () {
-      mainState.player.body.velocity.y = 0;
+    socket.on('move1', function (moveData) {
+      mainState.player.body.velocity.y = 300 * moveData.y * config.options["pad speed"][config.preferences["pad speed"]];
+      console.log(mainState.player.body.velocity.y);
     });
     /* --------------------------------------------------------------- */
 
     /* ----- Imposta movimento enemy in base ad evento ricevuto ----- */
-    socket.on('moveUp2', function () {
-      mainState.enemy.body.velocity.y = -300 * config.options["pad speed"][config.preferences["pad speed"]];
-    });
-
-    socket.on('moveDown2', function () {
-      mainState.enemy.body.velocity.y = 300 * config.options["pad speed"][config.preferences["pad speed"]];
-    });
-
-    socket.on('stop2', function () {
-      mainState.enemy.body.velocity.y = 0;
+    socket.on('move2', function (moveData) {
+      mainState.enemy.body.velocity.y = 300 * moveData.y * config.options["pad speed"][config.preferences["pad speed"]];
     });
     /* --------------------------------------------------------------- */
 
@@ -189,9 +174,8 @@ var mainState = {
 
   goToMenu: function () {
     //Rimuove i listener prima di passare al menu
-    socket.removeListener('stop');
-    socket.removeListener('moveUp');
-    socket.removeListener('moveDown');
+    socket.removeListener('move1');
+    socket.removeListener('move2');
     socket.removeListener('bonus');
     game.state.start('menu');
   },
