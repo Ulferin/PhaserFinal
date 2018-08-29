@@ -41,6 +41,17 @@ let editorState = {
 
     //Aggiunge listener per passare allo stato di gioco
     game.input.keyboard.addKey(Phaser.KeyCode.S).onDown.add(this.playMap, this);
+
+    //Aggiunge listener per tornare al menu
+    game.input.keyboard.addKey(Phaser.KeyCode.ESC).onDown.add(this.goToMenu, this);
+
+    //Mostra suggerimenti utilizzo editor
+    this.hintLabel = game.add.text(game.width/2, 50,
+      "Press E to hide tileselector\nPress S to play the map\nPress ESC to exit"
+      , { font: 'Press Start 2P', fill: '#ffffff' });
+    this.hintLabel.anchor.set(0.5);
+    this.hintLabel.fontSize = config.mainMenu.size;
+    game.time.events.add(Phaser.Timer.SECOND * 4, this.fadeHint, this);
   },
 
   createTileSelector: function() {
@@ -151,6 +162,14 @@ let editorState = {
     this.tileStrip.destroy();
     this.tileSelectorBackground.destroy();
     game.state.start('main', false, false, {"map":this.map, "layer":this.layer1, "player":this.player, "enemy":this.enemy, "ball":this.ball});
+  },
+
+  goToMenu: function () {
+    game.state.start('menu');
+  },
+
+  fadeHint: function () {
+    game.add.tween(this.hintLabel).to({alpha: 0}, 500).start();
   }
   
 };
