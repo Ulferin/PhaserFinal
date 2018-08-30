@@ -14,13 +14,19 @@ let padState= {
 
   create: function () {
 
+    //Comunica al server la connesione
     socket.emit('padConnected');
 
+    //Valore attuale rotazione
     this.moveData = {
       "y": 0
     };
 
-    //Aggiunge listener per invio cambio rotazione
+    //Listener cambio rotazione dispositivo
+    game.scale.onOrientationChange.add(this.orientationChange, this);
+    this.orientationChange();
+
+    //Aggiunge listener per invio valore rotazione
     this.setOrientationListener();
 
     //Imposta interfaccia gamepad
@@ -61,6 +67,7 @@ let padState= {
     this.movePlayer();
   },
 
+  //Costruisce interfaccia
   addMobileButton: function() {
     //Carica plugin VirtualJoystick
     this.pad = game.plugins.add(Phaser.VirtualJoystick);
@@ -72,13 +79,14 @@ let padState= {
     this.stick.motionLock = Phaser.VirtualJoystick.VERTICAL;
 
     //Aggiunge pulsante per bonus
-    this.speedup = game.add.sprite(game.width/2, game.height/2, 'speedup');
+    this.speedup = game.add.sprite(game.width * 0.8, game.height/2, 'speedup');
     this.speedup.anchor.set(0.5);
     this.speedup.inputEnabled = true;
     this.speedup.alpha = 0.8;
     this.speedup.events.onInputDown.add(this.setBonus, this);
   },
 
+  //Invia valore rotazione dispositivo
   setOrientationListener: function () {
     //Se il dispositivo supporta la lettura dei sensori
     if (window.DeviceOrientationEvent) {
@@ -88,8 +96,6 @@ let padState= {
         //Recupera valori
         let scale = {};
         scale.Y = Math.round(event.beta);
-        scale.X = Math.round(event.gamma);
-        scale.Z = Math.round(event.alpha);
         //Invia evento al server
         socket.emit('input', scale);
       }, true);
@@ -99,6 +105,7 @@ let padState= {
     }
   },
 
+  //Invia valore movimento
   movePlayer: function () {
     //Invia segnale al server in base a direzione pad
     this.moveData.y = this.stick.forceY;
@@ -106,14 +113,26 @@ let padState= {
 
   },
 
+  //Passa a fullscreen
   goFullScreen: function (pointer, doubleTap) {
     if(doubleTap) {
       game.scale.startFullScreen();
     }
   },
 
+  //Invia attivazione/disattivazione bonus
   setBonus: function () {
     socket.emit('bonus');
+  },
+
+  //Cambia visualizzazione in base ad orientamento dispositivo
+  orientationChange: function() {
+    if (game.scale.isPortrait) {
+      game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
+    }
+    else {
+      game.scale.fullScreenScaleMode = Phaser.ScaleManager.EXACT_FIT;
+    }
   }
 
 
