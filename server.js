@@ -18,9 +18,9 @@ app.use(device.capture());
 app.use(express.static(__dirname + '/public'));
 
 //Ultimo client desktop/mobile connesso
-var desktopClient = {"connected":false, "id":0};
-var phoneClient1 = {"connected":false, "id":0};
-var phoneClient2 = {"connected": false, "id":0};
+let desktopClient = {"connected":false, "id":0};
+let phoneClient1 = {"connected":false, "id":0};
+let phoneClient2 = {"connected": false, "id":0};
 
 //Differenzia accessi da mobile e pc
 app.get('/', function (req, res) {
@@ -77,7 +77,7 @@ io.on('connection', function (socket) {
   //Richiesta file di configurazione
   socket.on('reqConfig', function() {
     desktopClient.id = socket.id;
-    var obj = JSON.parse(fs.readFileSync('./config.json', 'utf8'));
+    let obj = JSON.parse(fs.readFileSync('./config.json', 'utf8'));
     socket.emit('config', obj);
   });
 

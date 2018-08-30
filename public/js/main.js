@@ -35,7 +35,7 @@ var mainState = {
     this.emitter.maxParticleSpeed = 0;
     this.emitter.minRotation = 0;
     this.emitter.maxRotation = 0;
-    this.emitter.setAlpha(1, 0, 250);
+    this.emitter.setAlpha(0.2, 0, 250);
     this.emitter.makeParticles('ball');
     this.emitter.start(false,300,0);
     this.emitter.on = true;
