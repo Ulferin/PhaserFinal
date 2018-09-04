@@ -107,10 +107,6 @@ io.on('connection', function (socket) {
   socket.on('bonus', function () {
     io.to(desktopClient.id).emit('bonus');
   });
-
-  socket.on('bonusDown', function () {
-    io.to(desktopClient.id).emit('bonus');
-  });
   /* --------------------------------------------------------------------------------- */
 
   /* ----- Notifiche aggiornamento punteggio ----- */

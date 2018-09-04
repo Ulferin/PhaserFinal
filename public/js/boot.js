@@ -22,7 +22,7 @@ let bootState = {
     game.stage.disableVisibilityChange = true;
     game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
 
-    //Imposta dimensione minima e massima
+    //Imposta dimensione massima
     game.scale.maxWidth = 800;
     game.scale.maxHeight = 608;
 

@@ -52,13 +52,6 @@ var mainState = {
     this.score1 = 0;
     this.score2 = 0;
 
-    //Crea oggetto per gestione input frecce direzionali
-    //non propaga l'input al browser
-    this.cursor = game.input.keyboard.createCursorKeys();
-    game.input.keyboard.addKeyCapture(
-      [Phaser.Keyboard.UP, Phaser.Keyboard.DOWN]
-    );
-
     //Imposta proprietà barra player
     game.physics.arcade.enable(this.player);
     this.player.checkWorldBounds = true;
@@ -71,7 +64,6 @@ var mainState = {
     this.enemy.checkWorldBounds = true;
     this.enemy.body.collideWorldBounds = true;
     this.enemy.body.immovable = true;
-    this.enemy.body.drag = true;
 
     //Imposta proprietà palla
     this.ball.checkWorldBounds = true;
@@ -140,7 +132,7 @@ var mainState = {
     });
   },
   
-  ballHitPlayer: function (player, ball) {
+  ballHitPlayer: function (player) {
     //Decide direzione pallina in base ad inclinazione ricevuta dal server
     if(player.key === "player")
       this.ball.body.velocity.y = (5 * this.deviation.Y1);
@@ -152,7 +144,7 @@ var mainState = {
     this.bonus = false;
     this.ball.reset(this.game.width/2, this.game.height/2);
     this.ball.body.velocity.x = 450;
-    this.ball.body.velocity.y = 50;
+    this.ball.body.velocity.y = 0;
   },
 
   createMap: function(mapNum) {

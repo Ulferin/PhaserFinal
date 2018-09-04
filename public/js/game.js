@@ -6,10 +6,10 @@ var config = {};
 
 //Crea socket e recupera dal server il file di configurazione
 var socket = io.connect();
-socket.emit('reqConfig');
 socket.on('config', function (confFile) {
   config = confFile;
 });
+socket.emit('reqConfig');
 
 //Aggiunge stati di gioco
 game.state.add('boot', bootState);
